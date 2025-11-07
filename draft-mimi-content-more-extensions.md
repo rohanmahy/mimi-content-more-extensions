@@ -3,7 +3,7 @@ title: "Additional Extensions for the More Instant Messaging Interoperablility (
 abbrev: "More MIMI Content Extensions"
 category: info
 
-docname: draft-mahy-mimi-content-more-extensions-latest
+docname: draft-mimi-content-more-extensions-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
