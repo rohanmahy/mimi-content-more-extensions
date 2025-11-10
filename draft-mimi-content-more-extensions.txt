@@ -2,15 +2,15 @@
 
 
 
-WG Working Group                                                 R. Mahy
-Internet-Draft                                           7 November 2025
+Network Working Group                                            R. Mahy
+Internet-Draft                                          10 November 2025
 Intended status: Informational                                          
-Expires: 11 May 2026
+Expires: 14 May 2026
 
 
  Additional Extensions for the More Instant Messaging Interoperablility
                          (MIMI) Content Format
-             draft-mahy-mimi-content-more-extensions-latest
+               draft-mimi-content-more-extensions-latest
 
 Abstract
 
@@ -21,16 +21,13 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://example.com/LATEST.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-mahy-mimi-content-
+   https://rohanmahy.github.io/mimi-content-more-extensions/draft-mimi-
+   content-more-extensions.html.  Status information for this document
+   may be found at https://datatracker.ietf.org/doc/draft-mimi-content-
    more-extensions/.
 
-   Discussion of this document takes place on the WG Working Group
-   mailing list (mailto:WG@example.com), which is archived at
-   https://example.com/WG.
-
    Source for this draft and an issue tracker can be found at
-   https://github.com/USER/REPO.
+   https://github.com/rohanmahy/mimi-content-more-extensions.
 
 Status of This Memo
 
@@ -47,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 May 2026.
+   This Internet-Draft will expire on 14 May 2026.
 
 Copyright Notice
 
@@ -67,15 +64,19 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Security Considerations
-   4.  IANA Considerations
-   5.  Normative References
+   3.  Sender Timestamp Extension
+   4.  External Message ID Extension
+   5.  Subject Extension
+   6.  Message Ordering via lastSeen
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  Normative References
    Acknowledgments
    Author's Address
 
 1.  Introduction
 
-   TODO Introduction
+   This document defines ome MIMI content
 
 2.  Conventions and Definitions
 
@@ -85,15 +86,91 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Security Considerations
+3.  Sender Timestamp Extension
+
+   /sender_timestamp/  3: {
+       /seconds since UNIX epoch/  1: 1762760377,
+       /microseconds/             -6: 462917
+   }
+
+   sender_timestamp = {
+     TBD1: {
+       1: uint,
+       ? fractional
+     }
+   }
+
+   fractional = ( -3: millisecs / -6: microsecs / -9: nanosecs)
+   millisecs = 0..999
+   microsecs = 0..999999
+   nanosecs  = 0..999999999
+
+   TBD1 = 3  ; recommended value for IANA
+
+4.  External Message ID Extension
+
+   Many messaging systems already have a native message ID format.
+
+   external_message_id = {
+     TBD2: ExtMessageId
+   }
+
+   ExtMessageId = [ bstr, scope ]
+   scope = pen / domain / uri
+   pen = uint .gt 0 ; IANA Private Enterprise Number
+   domain = tstr    ; Internet domain name
+
+   TBD2 = 4
+
+5.  Subject Extension
+
+   subject = {
+     TBD3: tstr .size 1..4096
+   }
+
+   TBD3 = 5
+
+6.  Message Ordering via lastSeen
+
+   The lastSeen data field indicates the latest message the sender was
+   aware of in the group.  It is a list of MIMI message IDs, or a list
+   of external message IDs.
+
+   If the sender recently joined the group and has not yet seen any
+   messages, the list is empty.
+
+   If the sender identifies a single message as unambiguously the latest
+   message in the group, the lastSeen list contains a single message id
+   from that message.
+
+   Imagine however that two users (Bob and Cathy) see a message from
+   Alice offering free Hawaiian pizza, and reply at the same time.  Bob
+   and Cathy both send messages with their lastSeen including a single
+   message id (Alice's) message about pizza.  Their messages don't need
+   to be replies or reactions.  Bob might just send a message saying he
+   doesn't like pineapple on pizza.  Now Doug receives all these
+   messages and replies as well.  Doug's message contains a lastSeen
+   including the message id list of both Bob's and Cathy's replies,
+   effectively "merging" the order of messages.
+
+   The next message after Doug's message contains a lastSeen containing
+   only the message id of Doug's message.
+
+   ordering = {
+     TBD4: [ * MessageId ] / [ * ExtMessageId ]
+   }
+
+   TBD4 = 256
+
+7.  Security Considerations
 
    TODO Security
 
-4.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-5.  Normative References
+9.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
