@@ -1,0 +1,33 @@
+sender_timestamp = {
+  TBD1: {
+    1: uint,
+    ? fractional
+  }
+}
+fractional = ( -3: millisecs / -6: microsecs / -9: nanosecs)
+millisecs = 0..999
+microsecs = 0..999999
+nanosecs  = 0..999999999
+
+external_message_id = {
+  TBD2: ExtMessageId
+}
+ExtMessageId = [ bstr, scope ]
+scope = pen / domain / uri
+pen = uint .gt 0    ; IANA Private Enterprise Number
+domain = tstr       ; Internet domain name
+
+subject = {
+  TBD3: tstr .size 1..4096
+}
+
+ordering = {
+  TBD4: [ * MessageId ] / [ * ExtMessageId ]
+}
+
+; recommended values for IANA
+TBD1 = 3
+TBD2 = 4
+TBD3 = 5
+TBD4 = 256
+
