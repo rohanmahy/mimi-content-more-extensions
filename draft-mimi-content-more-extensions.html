@@ -7,7 +7,7 @@
 <title>Additional Extensions for the More Instant Messaging Interoperablility (MIMI) Content Format</title>
 <meta content="Rohan Mahy" name="author">
 <meta content="
-       TODO Abstract 
+       This document defines some new useful extensions for the MIMI content format. 
     " name="description">
 <meta content="xml2rfc 3.31.0" name="generator">
 <meta content="MIMI content extensions" name="keyword">
@@ -1050,7 +1050,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mahy</td>
-<td class="center">Expires 14 May 2026</td>
+<td class="center">Expires 18 May 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1063,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-mimi-content-more-extensions-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-11-10" class="published">10 November 2025</time>
+<time datetime="2025-11-14" class="published">14 November 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-05-14">14 May 2026</time></dd>
+<dd class="expires"><time datetime="2026-05-18">18 May 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1080,7 +1080,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Additional Extensions for the More Instant Messaging Interoperablility (MIMI) Content Format</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">TODO Abstract<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document defines some new useful extensions for the MIMI content format.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1112,7 +1112,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1164,15 +1164,40 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-sendertimestamp-mimi-conten" class="internal xref">senderTimestamp MIMI Content Extension Key</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-externalmessageid-mimi-cont" class="internal xref">externalMessageId MIMI Content Extension Key</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-subject-mimi-content-extens" class="internal xref">subject MIMI Content Extension Key</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4">
+                <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="auto internal xref">8.4</a>.  <a href="#name-lastseen-mimi-content-exten" class="internal xref">lastSeen MIMI Content Extension Key</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-complete-cddl-schema" class="internal xref">Complete CDDL Schema</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1183,7 +1208,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document defines ome MIMI content<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">This document defines a set of new fields for the MIMI content <span>[<a href="#I-D.ietf-mimi-content" class="cite xref">I-D.ietf-mimi-content</a>]</span> format extensions map.
+These particular extensions were chosen to provide functionality already in some other messaging systems, so that they can carry this information safely with the MIMI content format.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1197,82 +1223,100 @@ described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</s
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sender-timestamp-extension">
+<div id="senderTimestamp">
 <section id="section-3">
       <h2 id="name-sender-timestamp-extension">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-sender-timestamp-extension" class="section-name selfRef">Sender Timestamp Extension</a>
       </h2>
-<div class="lang-cbor-diag sourcecode" id="section-3-1">
+<p id="section-3-1">This extension represents the sender asserted sending timestamp.
+It is a map containing the whole number of seconds since the start of the UNIX epoch, and optionally the number of additional milliseconds, microseconds, or nanoseconds.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<div class="lang-cbor-diag sourcecode" id="section-3-2">
 <pre>
 /sender_timestamp/  3: {
     /seconds since UNIX epoch/  1: 1762760377,
     /microseconds/             -6: 462917
 }
-</pre><a href="#section-3-1" class="pilcrow">¶</a>
+</pre><a href="#section-3-2" class="pilcrow">¶</a>
 </div>
-<div class="lang-cddl sourcecode" id="section-3-2">
+<p id="section-3-3">The Concise Data Definition Language (CDDL) <span>[<a href="#RFC8610" class="cite xref">RFC8610</a>]</span> description of the extension is below.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-3-4">
 <pre>
-sender_timestamp = {
-  TBD1: {
+$$otherKnownExtensions //= (
+  &amp;(senderTimestamp: TBD1) ^ =&gt; {
     1: uint,
     ? fractional
   }
-}
-
-fractional = ( -3: millisecs / -6: microsecs / -9: nanosecs)
+)
+fractional = ( -3: millisecs // -6: microsecs // -9: nanosecs)
 millisecs = 0..999
 microsecs = 0..999999
 nanosecs  = 0..999999999
 
 TBD1 = 3  ; recommended value for IANA
-</pre><a href="#section-3-2" class="pilcrow">¶</a>
+</pre><a href="#section-3-4" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
-<div id="external-message-id-extension">
+<div id="externalMessageId">
 <section id="section-4">
       <h2 id="name-external-message-id-extensi">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-external-message-id-extensi" class="section-name selfRef">External Message ID Extension</a>
       </h2>
-<p id="section-4-1">Many messaging systems already have a native message ID format.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<div class="lang-cddl sourcecode" id="section-4-2">
+<p id="section-4-1">While the MIMI content format has its own message ID derived from a hash of its content, many messaging systems already have a native message ID format.
+This extension allows this "external" message ID to also be included in the MIMI content extensions map.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">It consists of an array of two parts, a byte string for the native message ID, and a scope.
+The scope could be be an Internet domain name (represented as a text string), a tagged URI, or an IANA-registered Private Enterprise Number (PEN), which is a positive integer.
+The PEN option allows for a concise, but unambiguous scope in many organizations.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<div class="lang-cbor-diag sourcecode" id="section-4-3">
 <pre>
-external_message_id = {
-  TBD2: ExtMessageId
-}
-
+4: [h'08bbeeb8175c4a64a8926a5a23bb2811', 311]
+</pre><a href="#section-4-3" class="pilcrow">¶</a>
+</div>
+<p id="section-4-4">The CDDL description is below.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-4-5">
+<pre>
+$$otherKnownExtensions //= (
+  &amp;(externalMessageId: TBD2) ^ =&gt; ExtMessageId
+)
 ExtMessageId = [ bstr, scope ]
 scope = pen / domain / uri
-pen = uint .gt 0 ; IANA Private Enterprise Number
-domain = tstr    ; Internet domain name
+pen = uint .gt 0    ; IANA Private Enterprise Number
+domain = tstr       ; Internet domain name
 
 TBD2 = 4
-</pre><a href="#section-4-2" class="pilcrow">¶</a>
+</pre><a href="#section-4-5" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
-<div id="subject-extension">
+<div id="subject">
 <section id="section-5">
       <h2 id="name-subject-extension">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-subject-extension" class="section-name selfRef">Subject Extension</a>
       </h2>
-<div class="lang-cddl sourcecode" id="section-5-1">
+<p id="section-5-1">The subject extension allows messaging systems which already have a Subject field to carry a text string of up to 4096 octets of legal UTF-8.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<div class="lang-cbor-diag sourcecode" id="section-5-2">
 <pre>
-subject = {
-  TBD3: tstr .size 1..4096
-}
+5: "This space intentionally left blank"
+</pre><a href="#section-5-2" class="pilcrow">¶</a>
+</div>
+<p id="section-5-3">The CDDL description is below.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-5-4">
+<pre>
+$$otherKnownExtensions //= (
+  &amp;(subject: TBD3) ^ =&gt; tstr .size (1..4096)
+)
 
 TBD3 = 5
-</pre><a href="#section-5-1" class="pilcrow">¶</a>
+</pre><a href="#section-5-4" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
-<div id="message-ordering-via-lastseen">
+<div id="lastSeen">
 <section id="section-6">
       <h2 id="name-message-ordering-via-lastse">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-message-ordering-via-lastse" class="section-name selfRef">Message Ordering via lastSeen</a>
       </h2>
-<p id="section-6-1">The <code>lastSeen</code> data field indicates the latest message the sender was aware of in the group.
+<p id="section-6-1">The <code>lastSeen</code> data field indicates the latest message(s) the sender was aware of in the group.
 It is a list of MIMI message IDs, or a list of external message IDs.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">If the sender recently joined the group and has not yet seen any messages,
 the list is empty.<a href="#section-6-2" class="pilcrow">¶</a></p>
@@ -1280,23 +1324,21 @@ the list is empty.<a href="#section-6-2" class="pilcrow">¶</a></p>
 message in the group, the <code>lastSeen</code> list contains a single message id
 from that message.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">Imagine however that two users (Bob and Cathy) see a message from Alice offering free Hawaiian pizza, and reply at the same time.
-Bob and Cathy both send messages with their <code>lastSeen</code> including a single message id (Alice's)
-message about pizza.  Their messages don't need to be replies or reactions.
+Bob and Cathy both send messages with their <code>lastSeen</code> including a single message id (Alice's message about pizza).
+Their messages don't need to be replies or reactions.
 Bob might just send a message saying he doesn't like pineapple on pizza.
-Now Doug receives all these messages and replies
-as well. Doug's message contains a <code>lastSeen</code> including the message id
-list of both Bob's and Cathy's replies, effectively "merging" the order
-of messages.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">The next message after Doug's message contains a <code>lastSeen</code> containing
-only the message id of Doug's message.<a href="#section-6-5" class="pilcrow">¶</a></p>
-<div class="lang-cddl sourcecode" id="section-6-6">
+Now Doug receives all these messages and replies as well.
+Doug's message contains a <code>lastSeen</code> including the message id list of both Bob's and Cathy's replies, effectively "merging" the order of messages.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">The next message after Doug's message contains a <code>lastSeen</code> containing only the message id of Doug's message.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">The CDDL description is below.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<div class="lang-cddl sourcecode" id="section-6-7">
 <pre>
-ordering = {
-  TBD4: [ * MessageId ] / [ * ExtMessageId ]
-}
+$$otherKnownExtensions //= (
+  &amp;(lastSeen: TBD4) ^ =&gt; [ * MessageId ] / [ * ExtMessageId ]
+)
 
 TBD4 = 256
-</pre><a href="#section-6-6" class="pilcrow">¶</a>
+</pre><a href="#section-6-7" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -1313,36 +1355,208 @@ TBD4 = 256
       <h2 id="name-iana-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">This document has no IANA actions.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-1">IANA is requested to add the following entries to the MIMI Content Extension Keys registry.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<div id="sendertimestamp-mimi-content-extension-key">
+<section id="section-8.1">
+        <h3 id="name-sendertimestamp-mimi-conten">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-sendertimestamp-mimi-conten" class="section-name selfRef">senderTimestamp MIMI Content Extension Key</a>
+        </h3>
+<p id="section-8.1-1">The following completed registration template is provided:<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.1-2.1">
+            <p id="section-8.1-2.1.1">Key: TBD1 (suggested value 3)<a href="#section-8.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.1-2.2">
+            <p id="section-8.1-2.2.1">Name: senderTimestamp<a href="#section-8.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.1-2.3">
+            <p id="section-8.1-2.3.1">Type: map<a href="#section-8.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.1-2.4">
+            <p id="section-8.1-2.4.1">Recommended: N<a href="#section-8.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.1-2.5">
+            <p id="section-8.1-2.5.1">Reference: <a href="#senderTimestamp" class="auto internal xref">Section 3</a> of this document<a href="#section-8.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
 </section>
 </div>
-<div id="sec-normative-references">
+<div id="externalmessageid-mimi-content-extension-key">
+<section id="section-8.2">
+        <h3 id="name-externalmessageid-mimi-cont">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-externalmessageid-mimi-cont" class="section-name selfRef">externalMessageId MIMI Content Extension Key</a>
+        </h3>
+<p id="section-8.2-1">The following completed registration template is provided:<a href="#section-8.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.2-2.1">
+            <p id="section-8.2-2.1.1">Key: TBD2 (suggested value 4)<a href="#section-8.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.2-2.2">
+            <p id="section-8.2-2.2.1">Name: externalMessageId<a href="#section-8.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.2-2.3">
+            <p id="section-8.2-2.3.1">Type: array of 2 items<a href="#section-8.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.2-2.4">
+            <p id="section-8.2-2.4.1">Recommended: N<a href="#section-8.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.2-2.5">
+            <p id="section-8.2-2.5.1">Reference: <a href="#externalMessageId" class="auto internal xref">Section 4</a> of this document<a href="#section-8.2-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="subject-mimi-content-extension-key">
+<section id="section-8.3">
+        <h3 id="name-subject-mimi-content-extens">
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-subject-mimi-content-extens" class="section-name selfRef">subject MIMI Content Extension Key</a>
+        </h3>
+<p id="section-8.3-1">The following completed registration template is provided:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.3-2.1">
+            <p id="section-8.3-2.1.1">Key: TBD3 (suggested value 5)<a href="#section-8.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.3-2.2">
+            <p id="section-8.3-2.2.1">Name: subject<a href="#section-8.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.3-2.3">
+            <p id="section-8.3-2.3.1">Type: tstr<a href="#section-8.3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.3-2.4">
+            <p id="section-8.3-2.4.1">Recommended: N<a href="#section-8.3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.3-2.5">
+            <p id="section-8.3-2.5.1">Reference: <a href="#subject" class="auto internal xref">Section 5</a> of this document<a href="#section-8.3-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="lastseen-mimi-content-extension-key">
+<section id="section-8.4">
+        <h3 id="name-lastseen-mimi-content-exten">
+<a href="#section-8.4" class="section-number selfRef">8.4. </a><a href="#name-lastseen-mimi-content-exten" class="section-name selfRef">lastSeen MIMI Content Extension Key</a>
+        </h3>
+<p id="section-8.4-1">The following completed registration template is provided:<a href="#section-8.4-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-8.4-2.1">
+            <p id="section-8.4-2.1.1">Key: TBD4 (suggested value 256)<a href="#section-8.4-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.4-2.2">
+            <p id="section-8.4-2.2.1">Name: lastSeen<a href="#section-8.4-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.4-2.3">
+            <p id="section-8.4-2.3.1">Type: array<a href="#section-8.4-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.4-2.4">
+            <p id="section-8.4-2.4.1">Recommended: N<a href="#section-8.4-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-8.4-2.5">
+            <p id="section-8.4-2.5.1">Reference: <a href="#lastSeen" class="auto internal xref">Section 6</a> of this document<a href="#section-8.4-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="sec-combined-references">
 <section id="section-9">
-      <h2 id="name-normative-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<div id="sec-normative-references">
+<section id="section-9.1">
+        <h3 id="name-normative-references">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-    <dd>
+        <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8610">[RFC8610]</dt>
+      <dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Vigano, C.</span>, and <span class="refAuthor">C. Bormann</span>, <span class="refTitle">"Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures"</span>, <span class="seriesInfo">RFC 8610</span>, <span class="seriesInfo">DOI 10.17487/RFC8610</span>, <time datetime="2019-06" class="refDate">June 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8610">https://www.rfc-editor.org/rfc/rfc8610</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
 </div>
-<div id="acknowledgments">
+<div id="sec-informative-references">
+<section id="section-9.2">
+        <h3 id="name-informative-references">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-mimi-content">[I-D.ietf-mimi-content]</dt>
+      <dd>
+<span class="refAuthor">Mahy, R.</span>, <span class="refTitle">"More Instant Messaging Interoperability (MIMI) message content"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-mimi-content-07</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-mimi-content-07">https://datatracker.ietf.org/doc/html/draft-ietf-mimi-content-07</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="cddl">
 <section id="appendix-A">
+      <h2 id="name-complete-cddl-schema">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-complete-cddl-schema" class="section-name selfRef">Complete CDDL Schema</a>
+      </h2>
+<span id="name-a-complete-cddl-description"></span><div id="cddl-schema">
+<figure id="figure-1">
+        <div class="lang-cddl sourcecode" id="appendix-A-1.1">
+<pre>
+$$otherKnownExtensions //= (
+  &amp;(senderTimestamp: TBD1) ^ =&gt; {
+    1: uint,
+    ? fractional
+  }
+)
+fractional = ( -3: millisecs // -6: microsecs // -9: nanosecs)
+millisecs = 0..999
+microsecs = 0..999999
+nanosecs  = 0..999999999
+
+$$otherKnownExtensions //= (
+  &amp;(externalMessageId: TBD2) ^ =&gt; ExtMessageId
+)
+ExtMessageId = [ bstr, scope ]
+scope = pen / domain / uri
+pen = uint .gt 0    ; IANA Private Enterprise Number
+domain = tstr       ; Internet domain name
+
+$$otherKnownExtensions //= (
+  &amp;(subject: TBD3) ^ =&gt; tstr .size (1..4096)
+)
+
+$$otherKnownExtensions //= (
+  &amp;(lastSeen: TBD4) ^ =&gt; [ * MessageId ] / [ * ExtMessageId ]
+)
+
+TBD1 = 3
+TBD2 = 4
+TBD3 = 5
+TBD4 = 256
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-a-complete-cddl-description" class="selfRef">A complete CDDL description of the new extensions</a>
+        </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-B">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">TODO acknowledge.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-B">
+<section id="appendix-C">
       <h2 id="name-authors-address">
 <a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
       </h2>
