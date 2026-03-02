@@ -3,9 +3,10 @@
 
 
 Network Working Group                                            R. Mahy
-Internet-Draft                                          14 November 2025
-Intended status: Informational                                          
-Expires: 18 May 2026
+Internet-Draft                                                          
+Intended status: Informational                               C. Jennings
+Expires: 3 September 2026                                          Cisco
+                                                            2 March 2026
 
 
  Additional Extensions for the More Instant Messaging Interoperablility
@@ -45,11 +46,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 May 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -79,8 +80,7 @@ Table of Contents
      9.1.  Normative References
      9.2.  Informative References
    Appendix A.  Complete CDDL Schema
-   Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -105,7 +105,7 @@ Table of Contents
    the UNIX epoch, and optionally the number of additional milliseconds,
    microseconds, or nanoseconds.
 
-   /sender_timestamp/  3: {
+   /senderTimestamp/  3: {
        /seconds since UNIX epoch/  1: 1762760377,
        /microseconds/             -6: 462917
    }
@@ -206,7 +206,63 @@ Table of Contents
 
 7.  Security Considerations
 
-   TODO Security
+   The Security Consideration of MIMI content apply.
+
+   These extensions are most likely to be used for interoperability with
+   messaging systems other than MIMI.  The security of the MIMI content
+   format needs to be considered in combination with the properties of
+   the messaging system that carries the messages.
+
+   The situations listed below are considered anomalies and could
+   indicate a malicious sender.  When they are encountered the receiver
+   MAY reject the MIMI message.
+
+   When the senderTimestamp extension:
+
+   *  dates from before the start of the UNIX epoch,
+
+   *  dates from before the first known message exchanged in the target
+      messaging system,
+
+   *  is from a time dramatically in the future (ex: hundreds of years),
+      or
+
+   *  jumps more than expected for the target messaging system.  For
+      example, a messaging system designed to deliver messages no more
+      that one month old, could reject messages more than 32 days in the
+      past or future.
+
+      Note that occasionally out-of-order messages are a consequence of
+      normal operations in most messaging systems.
+
+   When the externalMessageId extension:
+
+   *  is a duplicate of another external message ID already encountered,
+      or
+
+   *  is from a completely unexpected scope.
+
+   When the subject extension:
+
+   *  is not a string of legal UTF-8 characters.
+
+   When the lastSeen extension:
+
+   *  is empty, but the sender has previously sent messages in the room,
+
+   *  results in a loop,
+
+   *  contains a mix of both native MIMI MessageId and external message
+      IDs,
+
+   *  contains external message IDs from a completely unexpected scope,
+      or
+
+   *  refers to an excessive number of lastSeen messages simultaneously
+      (ex: contains more than 65535 message IDs).
+
+      Note that a popular message sent in a large group can result in
+      thousands of reactions in a few hundred milliseconds.
 
 8.  IANA Considerations
 
@@ -333,11 +389,12 @@ Appendix A.  Complete CDDL Schema
 
         Figure 1: A complete CDDL description of the new extensions
 
-Acknowledgments
-
-   TODO acknowledge.
-
-Author's Address
+Authors' Addresses
 
    Rohan Mahy
    Email: rohan.ietf@gmail.com
+
+
+   Cullen Jennings
+   Cisco
+   Email: fluffy@iii.ca
