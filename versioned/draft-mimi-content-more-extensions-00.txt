@@ -1,0 +1,400 @@
+
+
+
+
+Network Working Group                                            R. Mahy
+Internet-Draft                                                          
+Intended status: Informational                               C. Jennings
+Expires: 3 September 2026                                          Cisco
+                                                            2 March 2026
+
+
+ Additional Extensions for the More Instant Messaging Interoperablility
+                         (MIMI) Content Format
+                 draft-mimi-content-more-extensions-00
+
+Abstract
+
+   This document defines some new useful extensions for the MIMI content
+   format.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at
+   https://rohanmahy.github.io/mimi-content-more-extensions/draft-mimi-
+   content-more-extensions.html.  Status information for this document
+   may be found at https://datatracker.ietf.org/doc/draft-mimi-content-
+   more-extensions/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/rohanmahy/mimi-content-more-extensions.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 3 September 2026.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Sender Timestamp Extension
+   4.  External Message ID Extension
+   5.  Subject Extension
+   6.  Message Ordering via lastSeen
+   7.  Security Considerations
+   8.  IANA Considerations
+     8.1.  senderTimestamp MIMI Content Extension Key
+     8.2.  externalMessageId MIMI Content Extension Key
+     8.3.  subject MIMI Content Extension Key
+     8.4.  lastSeen MIMI Content Extension Key
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
+   Appendix A.  Complete CDDL Schema
+   Authors' Addresses
+
+1.  Introduction
+
+   This document defines a set of new fields for the MIMI content
+   [I-D.ietf-mimi-content] format extensions map.  These particular
+   extensions were chosen to provide functionality already in some other
+   messaging systems, so that they can carry this information safely
+   with the MIMI content format.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+3.  Sender Timestamp Extension
+
+   This extension represents the sender asserted sending timestamp.  It
+   is a map containing the whole number of seconds since the start of
+   the UNIX epoch, and optionally the number of additional milliseconds,
+   microseconds, or nanoseconds.
+
+   /senderTimestamp/  3: {
+       /seconds since UNIX epoch/  1: 1762760377,
+       /microseconds/             -6: 462917
+   }
+
+   The Concise Data Definition Language (CDDL) [RFC8610] description of
+   the extension is below.
+
+   $$otherKnownExtensions //= (
+     &(senderTimestamp: TBD1) ^ => {
+       1: uint,
+       ? fractional
+     }
+   )
+   fractional = ( -3: millisecs // -6: microsecs // -9: nanosecs)
+   millisecs = 0..999
+   microsecs = 0..999999
+   nanosecs  = 0..999999999
+
+   TBD1 = 3  ; recommended value for IANA
+
+4.  External Message ID Extension
+
+   While the MIMI content format has its own message ID derived from a
+   hash of its content, many messaging systems already have a native
+   message ID format.  This extension allows this "external" message ID
+   to also be included in the MIMI content extensions map.
+
+   It consists of an array of two parts, a byte string for the native
+   message ID, and a scope.  The scope could be be an Internet domain
+   name (represented as a text string), a tagged URI, or an IANA-
+   registered Private Enterprise Number (PEN), which is a positive
+   integer.  The PEN option allows for a concise, but unambiguous scope
+   in many organizations.
+
+   4: [h'08bbeeb8175c4a64a8926a5a23bb2811', 311]
+
+   The CDDL description is below.
+
+   $$otherKnownExtensions //= (
+     &(externalMessageId: TBD2) ^ => ExtMessageId
+   )
+   ExtMessageId = [ bstr, scope ]
+   scope = pen / domain / uri
+   pen = uint .gt 0    ; IANA Private Enterprise Number
+   domain = tstr       ; Internet domain name
+
+   TBD2 = 4
+
+5.  Subject Extension
+
+   The subject extension allows messaging systems which already have a
+   Subject field to carry a text string of up to 4096 octets of legal
+   UTF-8.
+
+   5: "This space intentionally left blank"
+
+   The CDDL description is below.
+
+   $$otherKnownExtensions //= (
+     &(subject: TBD3) ^ => tstr .size (1..4096)
+   )
+
+   TBD3 = 5
+
+6.  Message Ordering via lastSeen
+
+   The lastSeen data field indicates the latest message(s) the sender
+   was aware of in the group.  It is a list of MIMI message IDs, or a
+   list of external message IDs.
+
+   If the sender recently joined the group and has not yet seen any
+   messages, the list is empty.
+
+   If the sender identifies a single message as unambiguously the latest
+   message in the group, the lastSeen list contains a single message id
+   from that message.
+
+   Imagine however that two users (Bob and Cathy) see a message from
+   Alice offering free Hawaiian pizza, and reply at the same time.  Bob
+   and Cathy both send messages with their lastSeen including a single
+   message id (Alice's message about pizza).  Their messages don't need
+   to be replies or reactions.  Bob might just send a message saying he
+   doesn't like pineapple on pizza.  Now Doug receives all these
+   messages and replies as well.  Doug's message contains a lastSeen
+   including the message id list of both Bob's and Cathy's replies,
+   effectively "merging" the order of messages.
+
+   The next message after Doug's message contains a lastSeen containing
+   only the message id of Doug's message.
+
+   The CDDL description is below.
+
+   $$otherKnownExtensions //= (
+     &(lastSeen: TBD4) ^ => [ * MessageId ] / [ * ExtMessageId ]
+   )
+
+   TBD4 = 256
+
+7.  Security Considerations
+
+   The Security Consideration of MIMI content apply.
+
+   These extensions are most likely to be used for interoperability with
+   messaging systems other than MIMI.  The security of the MIMI content
+   format needs to be considered in combination with the properties of
+   the messaging system that carries the messages.
+
+   The situations listed below are considered anomalies and could
+   indicate a malicious sender.  When they are encountered the receiver
+   MAY reject the MIMI message.
+
+   When the senderTimestamp extension:
+
+   *  dates from before the start of the UNIX epoch,
+
+   *  dates from before the first known message exchanged in the target
+      messaging system,
+
+   *  is from a time dramatically in the future (ex: hundreds of years),
+      or
+
+   *  jumps more than expected for the target messaging system.  For
+      example, a messaging system designed to deliver messages no more
+      that one month old, could reject messages more than 32 days in the
+      past or future.
+
+      Note that occasionally out-of-order messages are a consequence of
+      normal operations in most messaging systems.
+
+   When the externalMessageId extension:
+
+   *  is a duplicate of another external message ID already encountered,
+      or
+
+   *  is from a completely unexpected scope.
+
+   When the subject extension:
+
+   *  is not a string of legal UTF-8 characters.
+
+   When the lastSeen extension:
+
+   *  is empty, but the sender has previously sent messages in the room,
+
+   *  results in a loop,
+
+   *  contains a mix of both native MIMI MessageId and external message
+      IDs,
+
+   *  contains external message IDs from a completely unexpected scope,
+      or
+
+   *  refers to an excessive number of lastSeen messages simultaneously
+      (ex: contains more than 65535 message IDs).
+
+      Note that a popular message sent in a large group can result in
+      thousands of reactions in a few hundred milliseconds.
+
+8.  IANA Considerations
+
+   IANA is requested to add the following entries to the MIMI Content
+   Extension Keys registry.
+
+8.1.  senderTimestamp MIMI Content Extension Key
+
+   The following completed registration template is provided:
+
+   *  Key: TBD1 (suggested value 3)
+
+   *  Name: senderTimestamp
+
+   *  Type: map
+
+   *  Recommended: N
+
+   *  Reference: Section 3 of this document
+
+8.2.  externalMessageId MIMI Content Extension Key
+
+   The following completed registration template is provided:
+
+   *  Key: TBD2 (suggested value 4)
+
+   *  Name: externalMessageId
+
+   *  Type: array of 2 items
+
+   *  Recommended: N
+
+   *  Reference: Section 4 of this document
+
+8.3.  subject MIMI Content Extension Key
+
+   The following completed registration template is provided:
+
+   *  Key: TBD3 (suggested value 5)
+
+   *  Name: subject
+
+   *  Type: tstr
+
+   *  Recommended: N
+
+   *  Reference: Section 5 of this document
+
+8.4.  lastSeen MIMI Content Extension Key
+
+   The following completed registration template is provided:
+
+   *  Key: TBD4 (suggested value 256)
+
+   *  Name: lastSeen
+
+   *  Type: array
+
+   *  Recommended: N
+
+   *  Reference: Section 6 of this document
+
+9.  References
+
+9.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC8610]  Birkholz, H., Vigano, C., and C. Bormann, "Concise Data
+              Definition Language (CDDL): A Notational Convention to
+              Express Concise Binary Object Representation (CBOR) and
+              JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
+              June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
+
+9.2.  Informative References
+
+   [I-D.ietf-mimi-content]
+              Mahy, R., "More Instant Messaging Interoperability (MIMI)
+              message content", Work in Progress, Internet-Draft, draft-
+              ietf-mimi-content-07, 7 July 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-mimi-
+              content-07>.
+
+Appendix A.  Complete CDDL Schema
+
+   $$otherKnownExtensions //= (
+     &(senderTimestamp: TBD1) ^ => {
+       1: uint,
+       ? fractional
+     }
+   )
+   fractional = ( -3: millisecs // -6: microsecs // -9: nanosecs)
+   millisecs = 0..999
+   microsecs = 0..999999
+   nanosecs  = 0..999999999
+
+   $$otherKnownExtensions //= (
+     &(externalMessageId: TBD2) ^ => ExtMessageId
+   )
+   ExtMessageId = [ bstr, scope ]
+   scope = pen / domain / uri
+   pen = uint .gt 0    ; IANA Private Enterprise Number
+   domain = tstr       ; Internet domain name
+
+   $$otherKnownExtensions //= (
+     &(subject: TBD3) ^ => tstr .size (1..4096)
+   )
+
+   $$otherKnownExtensions //= (
+     &(lastSeen: TBD4) ^ => [ * MessageId ] / [ * ExtMessageId ]
+   )
+
+   TBD1 = 3
+   TBD2 = 4
+   TBD3 = 5
+   TBD4 = 256
+
+        Figure 1: A complete CDDL description of the new extensions
+
+Authors' Addresses
+
+   Rohan Mahy
+   Email: rohan.ietf@gmail.com
+
+
+   Cullen Jennings
+   Cisco
+   Email: fluffy@iii.ca
