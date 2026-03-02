@@ -29,6 +29,10 @@ author:
     fullname: Rohan Mahy
     organization:
     email: rohan.ietf@gmail.com
+ -
+    fullname: Cullen Jennings
+    organization: Cisco
+    email: fluffy@iii.ca
 
 normative:
 
@@ -59,7 +63,7 @@ This extension represents the sender asserted sending timestamp.
 It is a map containing the whole number of seconds since the start of the UNIX epoch, and optionally the number of additional milliseconds, microseconds, or nanoseconds.
 
 ~~~ cbor-diag
-/sender_timestamp/  3: {
+/senderTimestamp/  3: {
     /seconds since UNIX epoch/  1: 1762760377,
     /microseconds/             -6: 462917
 }
@@ -164,7 +168,41 @@ TBD4 = 256
 
 # Security Considerations
 
-TODO Security
+The Security Consideration of MIMI content apply.
+
+These extensions are most likely to be used for interoperability with messaging systems other than MIMI.
+The security of the MIMI content format needs to be considered in combination with the properties of the messaging system that carries the messages.
+
+The situations listed below are considered anomalies and could indicate a malicious sender.
+When they are encountered the receiver MAY reject the MIMI message.
+
+When the `senderTimestamp` extension:
+
+- dates from before the start of the UNIX epoch,
+- dates from before the first known message exchanged in the target messaging system,
+- is from a time dramatically in the future (ex: hundreds of years), or
+- jumps more than expected for the target messaging system. For example, a messaging system designed to deliver messages no more that one month old, could reject messages more than 32 days in the past or future.
+
+> Note that occasionally out-of-order messages are a consequence of normal operations in most messaging systems.
+
+When the `externalMessageId` extension:
+
+- is a duplicate of another external message ID already encountered, or
+- is from a completely unexpected scope.
+
+When the `subject` extension:
+
+- is not a string of legal UTF-8 characters.
+
+When the `lastSeen` extension:
+
+- is empty, but the sender has previously sent messages in the room,
+- results in a loop,
+- contains a mix of both native MIMI `MessageId` and external message IDs,
+- contains external message IDs from a completely unexpected scope, or
+- refers to an excessive number of lastSeen messages simultaneously (ex: contains more than 65535 message IDs).
+
+> Note that a popular message sent in a large group can result in thousands of reactions in a few hundred milliseconds.
 
 
 # IANA Considerations
@@ -220,9 +258,3 @@ The following completed registration template is provided:
 {::include ./extensions.cddl}
 ~~~~~~~~~~
 {: #cddl-schema title="A complete CDDL description of the new extensions"}
-
-
-# Acknowledgments
-{:numbered="false"}
-
-TODO acknowledge.
